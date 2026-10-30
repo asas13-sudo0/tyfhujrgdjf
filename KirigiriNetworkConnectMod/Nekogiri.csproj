@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BE8D4052-15E4-4CC0-8481-034B8DD0E20D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NekogiriMod</RootNamespace>
+    <AssemblyName>Nekogiri</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols><DebugType>full</DebugType><Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath><DefineConstants>DEBUG;TRACE</DefineConstants><WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType><Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath><DefineConstants>TRACE</DefineConstants><WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony"><HintPath>..\Libraries\0Harmony.dll</HintPath></Reference>
+    <Reference Include="BepInEx"><HintPath>..\Libraries\BepInEx.dll</HintPath></Reference>
+    <Reference Include="Assembly-CSharp"><HintPath>..\GameReferences\Assembly-CSharp.dll</HintPath></Reference>
+    <Reference Include="Assembly-CSharp-firstpass"><HintPath>..\GameReferences\Assembly-CSharp-firstpass.dll</HintPath></Reference>
+    <Reference Include="Facepunch.Steamworks.Win64"><HintPath>..\GameReferences\Facepunch.Steamworks.Win64.dll</HintPath></Reference>
+    <Reference Include="PhotonRealtime"><HintPath>..\GameReferences\PhotonRealtime.dll</HintPath></Reference>
+    <Reference Include="PhotonUnityNetworking"><HintPath>..\GameReferences\PhotonUnityNetworking.dll</HintPath></Reference>
+    <Reference Include="UnityEngine"><HintPath>..\GameReferences\UnityEngine.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>..\GameReferences\UnityEngine.CoreModule.dll</HintPath></Reference>
+    <Reference Include="System" /><Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Nekogiri.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Kirigiri.ini" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,26 @@
+Nekogiri DLLをGitHub Actionsでビルドする手順
+
+1. GitHubにサインインし、New repositoryから空のリポジトリを作成します。
+   Public/Privateはどちらでも構いません。README等の自動追加は不要です。
+2. このZIPを展開し、NekogiriFix-1.0.6フォルダの中身
+   （.github、GameReferences、Libraries、KirigiriNetworkConnectMod、Nekogiri.sln等）
+   をリポジトリの最上位にアップロードしてCommitします。
+   ※「NekogiriFix-1.0.6」という親フォルダごと入れ子にしないでください。
+3. GitHubリポジトリのActionsタブを開きます。
+4. 左側の「Build Nekogiri DLL」を選び、「Run workflow」→「Run workflow」を押します。
+   main/masterへのpushでも自動実行されます。
+5. 実行が完了して緑のチェックになったら、実行結果ページ下部のArtifactsから
+   「Nekogiri-v0.5.0-DLL」をダウンロードします。
+6. ZIPを展開するとNekogiri.dllが入っています。
+
+注意:
+- これはコンパイルを自動化する設定であり、ゲーム内動作を保証するものではありません。
+- DLLを導入する前に、現在のNekogiri.dllを必ずバックアップしてください。
+- このリポジトリにはゲーム由来のAssembly-CSharp.dll等が含まれます。
+  リポジトリはPrivateにすることを推奨します。第三者へ公開・再配布しないでください。
+- ビルドが失敗した場合は、Actionsの失敗した実行を開き、赤く表示されたエラー部分を
+  コピーして共有してください。
+
+追加注意 (1.1.0.4):
+- Steam認証を使う場合、Photon Cloud DashboardのRealtime AppでSteam認証プロバイダーを有効にしてください。
+- このModはPhoton接続時にAuthType=Steamとticketを送信します。
