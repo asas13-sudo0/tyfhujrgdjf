@@ -1,0 +1,35 @@
+name: Build Nekogiri DLL
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build Nekogiri
+        shell: pwsh
+        run: |
+          msbuild .\Nekogiri.sln /t:Rebuild /p:Configuration=Release '/p:Platform=Any CPU' /m
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $dll = '.\KirigiriNetworkConnectMod\bin\Release\Nekogiri.dll'
+          if (!(Test-Path $dll)) { throw "DLL not found" }
+
+      - name: Upload DLL
+        uses: actions/upload-artifact@v4
+        with:
+          name: Nekogiri-v0.5.0-DLL
+          path: KirigiriNetworkConnectMod/bin/Release/Nekogiri.dll
+          if-no-files-found: error
+          retention-days: 30
